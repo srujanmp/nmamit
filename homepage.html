@@ -10,13 +10,52 @@
     <header>
         <ul>
             <li><img class="logo" src="logo.png" alt="logo"></li>
-            <li><button class="homebuttons">Home</button></li>
-            <li><button class="homebuttons">About Us</button></li>
-            <li><button class="homebuttons">Contact Us</button></li>
-            <li><button class="homebuttons">Sign Up</button></li>
+            <li><button class="homebuttons" onclick="location.href='#'">Home</button></li>
+            <li><button class="homebuttons" onclick="location.href='#'">About Us</button></li>
+            <li><button class="homebuttons" onclick="location.href='#'">Contact Us</button></li>
+            <li><button class="homebuttons"><a href="/logout">Logout</a></button></li>
         </ul>
     </header>
-
+    <h2>Welcome, {{email}}</h2>
+    <nav class="adsmain">
+        <div class="ads">
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+        </div>
+        <div class="ads1">
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+            <div><table class="ad">
+                <tr><td><img class="adimg" src="object.jpg"></td></tr>
+                <tr><td>Sample Title</td></tr>  
+                <tr><td>sample info</td></tr>
+            </table></div>
+        </div>
+    </nav>
+    <div class="buttonupload">
+    <button class="upload" onclick="location.href='#'">Upload</button>
+    </div>  
     <footer></footer>
 </body>
 </html>
