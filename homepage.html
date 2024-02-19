@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>Recycle</title>
+    
+</head>
+<body>
+    <header>
+        <ul>
+            <li><img class="logo" src="logo.png" alt="logo"></li>
+            <li><button class="homebuttons" onclick="location.href='#'">Home</button></li>
+            <li><button class="homebuttons" onclick="location.href='#'">About Us</button></li>
+            <li><button class="homebuttons" onclick="location.href='#'">Contact Us</button></li>
+            <li><button class="homebuttons"><a href="/logout">Logout</a></button></li>
+        </ul>
+    </header>
+<h2>Welcome, {{email}}</h2>
+<iframe id="pageFrame" src="page1.html" frameborder="0" width="100%" height="600"></iframe>
+    <div class="button-container">
+  <button onclick="changePage('page1.html')">1</button>
+  <button onclick="changePage('page2.html')">2</button>
+  <button onclick="changePage('page3.html')">3</button>
+</div>
+
+<script>
+  function changePage(pageUrl) {
+    document.getElementById('pageFrame').src = pageUrl;
+  }
+</script>
+    <div class="buttonupload">
+    <button class="upload" onclick="location.href='#'">Upload</button>
+    </div>  
+    <footer></footer>
+</body>
+</html>

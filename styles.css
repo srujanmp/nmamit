@@ -1,0 +1,29 @@
+.logo{
+    width: 100px;
+    height: 100px;
+}
+li{
+    display: inline;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+.ad{
+    border: 1px solid black;
+}
+.adimg{
+    height: 200px;
+    width: 350px;
+}
+.ads,.ads1{
+    display:flex;
+    justify-content: space-evenly;
+}
+.ads1{
+    padding-top: 20px;
+}
+.buttonupload{
+    margin: auto;
+}
