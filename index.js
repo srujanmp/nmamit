@@ -7,12 +7,12 @@ const Request = require('tedious').Request;
 
 // Database configuration
 const config = {
-    server: .env.SERVER,
+    server: process.env.SERVER,
     authentication: {
         type: 'default',
         options: {
-            userName: .env.USERNAME,
-            password: .env.PASSWORD
+            userName: process.env.USERNAME,
+            password: process.env.PASSWORD
         }
     },
     options: {
