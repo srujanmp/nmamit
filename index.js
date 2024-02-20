@@ -1,3 +1,4 @@
+require('dotenv').config(); // Load environment variables from .env file
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
@@ -6,12 +7,12 @@ const Request = require('tedious').Request;
 
 // Database configuration
 const config = {
-    server: 'projectlibraryserver.database.windows.net',
+    server: process.env.SERVER,
     authentication: {
         type: 'default',
         options: {
-            userName: 'internship82',
-            password: '$Sylylgo2ru'
+            userName: process.env.USERNAME,
+            password: process.env.PASSWORD
         }
     },
     options: {
