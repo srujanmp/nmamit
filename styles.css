@@ -1,29 +1,63 @@
-.logo{
+.logo {
     width: 100px;
     height: 100px;
 }
-li{
+
+li {
     display: inline;
 }
-ul{
+
+ul {
     display: flex;
     justify-content: space-between;
-    padding-right: 50px;
+    padding-right: 20px; /* Adjusted padding for better mobile view */
 }
-.ad{
+
+.ad {
     border: 1px solid black;
 }
-.adimg{
+
+.adimg {
     height: 200px;
     width: 350px;
 }
-.ads,.ads1{
-    display:flex;
+
+.ads,
+.ads1 {
+    display: flex;
     justify-content: space-evenly;
 }
-.ads1{
+
+.ads1 {
     padding-top: 20px;
 }
-.buttonupload{
+
+.buttonupload {
     margin: auto;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 80px; /* Adjusted logo size for mobile view */
+        height: 80px; /* Adjusted logo size for mobile view */
+    }
+
+    ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0; /* Removed right padding for better mobile view */
+    }
+
+    .homebuttons {
+        margin-top: 10px; /* Added margin between buttons for mobile view */
+    }
+
+    .adimg {
+        width: 100%; /* Make ads responsive to the width of the screen */
+    }
+
+    .buttonupload {
+        text-align: center; /* Center align the upload button on mobile view */
+    }
 }
