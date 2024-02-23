@@ -79,7 +79,25 @@ function createUser(name, email, pin, callback) {
         connection.execSql(request);
     });
 }
+// Function to insert a new Item into the Item table added 23feb
+function createItem(name, desc, contact, callback) {
+    connectToDatabase(function(connection) {
+        const request = new Request(
+            `INSERT INTO Item (ItemName, ItemDescription, ItemContact) VALUES ('${name}', '${desc}', ${contact});`,
+            function(err) {
+                if (err) {
+                    console.error('Error: ', err);
+                    callback(err);
+                } else {
+                    callback(null);
+                }
+            }
+        );
 
+        connection.execSql(request);
+    });
+}
+//createitem code ends here
 // Create a server
 http.createServer(function(req, res) {
     const q = url.parse(req.url, true);
@@ -178,6 +196,50 @@ http.createServer(function(req, res) {
             }
         });
     }
+    //code for item upload starts added 23feb
+    else if (filename === './itemupload' && req.method === 'POST') {
+        // Handle sitemupload form submission
+        let body = '';
+        req.on('data', function(chunk) {
+            body += chunk.toString();
+        });
+        req.on('end', function() {
+            const formData = new URLSearchParams(body);
+            const name = formData.get('name');
+            const desc = formData.get('desc');
+            const contact = parseInt(formData.get('contact'));
+            
+            // Validate data
+            if (!name || !desc || !contact) {
+                res.writeHead(400, { 'Content-Type': 'text/plain' });
+                res.end('Missing required fields');
+            } else {
+                // Insert new user into database
+                createItem(name, desc, contact, function(err) {
+                    if (err) {
+                        res.writeHead(500, { 'Content-Type': 'text/plain' });
+                        res.end('Internal Server Error');
+                    } else {
+                        // Account created successfully message
+                        const successMessage = '<h3>Item created successfully!</h3>';
+                        
+                        // Serve the signup form with success message
+                        fs.readFile('upload.html', function(err, data) {
+                            if (err) {
+                                res.writeHead(404, { 'Content-Type': 'text/html' });
+                                return res.end('404 Not Found');
+                            }
+                            const modifiedData = data.toString().replace('</body>', successMessage + '</body>');
+                            res.writeHead(200, { 'Content-Type': 'text/html' });
+                            res.write(modifiedData);
+                            return res.end();
+                        });
+                    }
+                });
+            }
+        });
+    }
+        //endcode for upload
     
     else {
         // Serve other static files (e.g., CSS, JS)
