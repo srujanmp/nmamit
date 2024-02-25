@@ -283,7 +283,7 @@ http.createServer(function(req, res) {
                     if (key === 'ImageUrl') { // Assuming the column name for image URL is 'ImageURL'
                         tableHtml += '<td><img src="' + row[key] + '" style="width:100%;" /></td>';
                     } else {
-                        tableHtml += '<td>' + row[key] + '</td>';
+                        tableHtml += '<td  style="text-align: center">' + row[key] + '</td>';
                     }
                 });
                 tableHtml += '</tr>';
