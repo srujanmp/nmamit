@@ -274,14 +274,14 @@ http.createServer(function(req, res) {
             let tableHtml = '<table border="1"><tr>';
             const keys = Object.keys(data[0]); // Get the keys from the first row to ensure consistency
             keys.forEach(function(key) {
-                tableHtml += '<th>' + key + '</th>';
+                tableHtml += '<th style="width: 20%;">' + key + '</th>';
             });
             tableHtml += '</tr>';
             data.forEach(function(row) {
                 tableHtml += '<tr>';
                 keys.forEach(function(key) {
                     if (key === 'ImageUrl') { // Assuming the column name for image URL is 'ImageURL'
-                        tableHtml += '<td><img src="' + row[key] + '" style="width: 30%;" /></td>';
+                        tableHtml += '<td><img src="' + row[key] + '" style="width:100%;" /></td>';
                     } else {
                         tableHtml += '<td>' + row[key] + '</td>';
                     }
