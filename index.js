@@ -271,7 +271,7 @@ http.createServer(function(req, res) {
             res.writeHead(500, { 'Content-Type': 'text/plain' });
             res.end('Internal Server Error');
         } else {
-            let tableHtml = '<table border="1"><tr>';
+            let tableHtml = '<style>@media only screen and (max-width: 768px){html {font-size: 25px;}}</style><table border="1"><tr>';
             const keys = Object.keys(data[0]); // Get the keys from the first row to ensure consistency
             keys.forEach(function(key) {
                 tableHtml += '<th style="width: 20%;">' + key + '</th>';
