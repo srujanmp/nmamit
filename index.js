@@ -241,7 +241,7 @@ http.createServer(function(req, res) {
                res.end('Missing required fields');
            } else {
                // Insert new item into database
-               createItem(name, desc, contact, function(err) {
+               createItem(url,name, desc, contact, function(err) {
                    if (err) {
                        res.writeHead(500, { 'Content-Type': 'text/plain' });
                        res.end('Internal Server Error');
