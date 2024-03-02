@@ -6,19 +6,20 @@ const Request = require("tedious").Request;
 
 // Database configuration
 const config = {
-	server: "projectlibraryserver.database.windows.net",
-	authentication: {
-		type: "default",
-		options: {
-			userName: "internship82",
-			password: "$Sylylgo2ru",
-		},
-	},
-	options: {
-		encrypt: true,
-		database: "library",
-	},
+    server: process.env.DB_SERVER,
+    authentication: {
+        type: "default",
+        options: {
+            userName: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+        },
+    },
+    options: {
+        encrypt: true,
+        database: process.env.DB_NAME,
+    },
 };
+
 
 // Function to handle database connection
 function connectToDatabase(callback) {
