@@ -3,22 +3,25 @@ const fs = require("fs");
 const url = require("url");
 const Connection = require("tedious").Connection;
 const Request = require("tedious").Request;
+const multer = require("multer");
 
 // Database configuration
 const config = {
-    server: process.env.DB_SERVER,
+    server: 'projectlibraryserver.database.windows.net',
     authentication: {
         type: "default",
         options: {
-            userName: process.env.DB_USERNAME,
-            password: process.env.DB_PASSWORD,
+            userName: 'internship82',
+            password: '$Sylylgo2ru',
         },
     },
     options: {
         encrypt: true,
-        database: process.env.DB_NAME,
+        database: 'library',
     },
 };
+
+
 
 
 // Function to handle database connection
@@ -79,23 +82,37 @@ function createUser(name, email, pin, callback) {
 	});
 }
 
+// Multer configuration
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "uploads/"); // Directory where uploaded files will be stored
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname); // Unique filename
+    },
+});
+
+const upload = multer({ storage: storage });
+
+
+
 // Function to insert a new Item into the Item table
 function createItem(url, name, desc, contact, callback) {
-	connectToDatabase(function (connection) {
-		const request = new Request(
-			`INSERT INTO Item (ImageUrl ,ItemName, ItemDescription, ItemContact) VALUES ('${url}','${name}', '${desc}', ${contact});`,
-			function (err) {
-				if (err) {
-					console.error("Error: ", err);
-					callback(err);
-				} else {
-					callback(null);
-				}
-			},
-		);
+    connectToDatabase(function (connection) {
+        const request = new Request(
+            `INSERT INTO Item (ImageUrl ,ItemName, ItemDescription, ItemContact) VALUES ('${url}','${name}', '${desc}', ${contact});`,
+            function (err) {
+                if (err) {
+                    console.error("Error: ", err);
+                    callback(err);
+                } else {
+                    callback(null);
+                }
+            },
+        );
 
-		connection.execSql(request);
-	});
+        connection.execSql(request);
+    });
 }
 
 // Function to fetch all items from the Item table
@@ -233,50 +250,55 @@ http
 				}
 			});
 		} else if (filename === "./itemupload" && req.method === "POST") {
-			// Handle item upload form submission
-			let body = "";
-			req.on("data", function (chunk) {
-				body += chunk.toString();
-			});
-			req.on("end", function () {
-				const formData = new URLSearchParams(body);
-				const url = formData.get("url");
-				const name = formData.get("name");
-				const desc = formData.get("desc");
-				const contact = parseInt(formData.get("contact"));
+            // Handle item upload form submission with Multer
+            upload.single("image")(req, res, function (err) {
+                if (err instanceof multer.MulterError) {
+                    // Multer error handling
+                    res.writeHead(500, { "Content-Type": "text/plain" });
+                    res.end("Multer Error");
+                } else if (err) {
+                    // Other errors
+                    res.writeHead(500, { "Content-Type": "text/plain" });
+                    res.end("Internal Server Error");
+                } else {
+                    const url = req.file.path; // Path to the uploaded file
+                    const name = req.body.name;
+                    const desc = req.body.desc;
+                    const contact = parseInt(req.body.contact);
 
-				// Validate data
-				if (!url || !name || !desc || !contact) {
-					res.writeHead(400, { "Content-Type": "text/plain" });
-					res.end("Missing required fields");
-				} else {
-					// Insert new item into database
-					createItem(url, name, desc, contact, function (err) {
-						if (err) {
-							res.writeHead(500, { "Content-Type": "text/plain" });
-							res.end("Internal Server Error");
-						} else {
-							// Item created successfully message
-							const successMessage = "<h3>Item created successfully!</h3>";
+                    // Validate data
+                    if (!url || !name || !desc || !contact) {
+                        res.writeHead(400, { "Content-Type": "text/plain" });
+                        res.end("Missing required fields");
+                    } else {
+                        // Insert new item into database
+                        createItem(url, name, desc, contact, function (err) {
+                            if (err) {
+                                res.writeHead(500, { "Content-Type": "text/plain" });
+                                res.end("Internal Server Error");
+                            } else {
+                                // Item created successfully message
+                                const successMessage = "<h3>Item created successfully!</h3>";
 
-							// Serve the upload form with success message
-							fs.readFile("upload.html", function (err, data) {
-								if (err) {
-									res.writeHead(404, { "Content-Type": "text/html" });
-									return res.end("404 Not Found");
-								}
-								const modifiedData = data
-									.toString()
-									.replace("</body>", successMessage + "</body>");
-								res.writeHead(200, { "Content-Type": "text/html" });
-								res.write(modifiedData);
-								return res.end();
-							});
-						}
-					});
-				}
-			});
-		} else if (filename === "./items") {
+                                // Serve the upload form with success message
+                                fs.readFile("upload.html", function (err, data) {
+                                    if (err) {
+                                        res.writeHead(404, { "Content-Type": "text/html" });
+                                        return res.end("404 Not Found");
+                                    }
+                                    const modifiedData = data
+                                        .toString()
+                                        .replace("</body>", successMessage + "</body>");
+                                    res.writeHead(200, { "Content-Type": "text/html" });
+                                    res.write(modifiedData);
+                                    return res.end();
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        } else if (filename === "./items") {
 			// Fetch items and display as a table
 			fetchItems(function (err, data) {
 				if (err) {
