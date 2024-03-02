@@ -1,8 +1,3 @@
-# Recycle
-internship_project
-
-
-to run login page download folder and run the follwing commands after installing nodejs and npm
 
 sudo npm init
 
