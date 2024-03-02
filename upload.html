@@ -8,9 +8,9 @@
 <body>
     
     <h1>Upload Item</h1>
-    <form action="/itemupload" method="post">
-        <label for="url">Item Image Url:</label><br>
-        <input type="text" id="url" name="url" required><br>
+    <form action="/itemupload" method="post" enctype="multipart/form-data">
+        <label for="image">Item Image:</label><br>
+        <input type="file" id="image" name="image" required><br>
         <label for="name">Item Name:</label><br>
         <input type="text" id="name" name="name" required><br>
         <label for="desc">Description:</label><br>
