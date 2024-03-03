@@ -89,7 +89,6 @@ const storage = multer.diskStorage({
         cb(null, "uploads/"); // Directory where uploaded files will be stored
     },
     filename: function (req, file, cb) {
-	    file=file.replace(/\\s+/g, '');//edited
         cb(null, Date.now() + "-" + file.originalname); // Unique filename
     },
 });
@@ -102,7 +101,6 @@ const upload = multer({ storage: storage });
 function createItem(url, name, desc, contact, callback) {
     connectToDatabase(function (connection) {
         const request = new Request(
-		url=url.replace(/\\s+/g, '');//edited
             `INSERT INTO Item (ImageUrl ,ItemName, ItemDescription, ItemContact) VALUES ('${url}','${name}', '${desc}', ${contact});`,
             function (err) {
                 if (err) {
