@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="home_styles.css">
     <title>Recycle</title>
     
 </head>
 <body>
-    <header>
-        <ul>
-            <li><img class="logo" src="logo3.png" alt="logo"></li>
-            <li><button class="homebuttons" onclick="location.href='#'">Home</button></li>
-            <li><button class="homebuttons" onclick="location.href='#'">About Us</button></li>
-            <li><button class="homebuttons" onclick="location.href='#'">Contact Us</button></li>
-            <li><button class="homebuttons"><a href="/logout">Logout</a></button></li>
-        </ul>
-    </header>
+    <nav class="navbar">
+        <div class="container">
+          <img class="logo" src="logo3.png" alt="logo">
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+          <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+        </div>
+      </nav>
+    
+      <script>const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        burger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+        </script>
 <h2>Welcome, {{email}}</h2>
 <h5> <button onclick="location.href='./items'">Browse Items</button></li> <h5>
 
