@@ -44,7 +44,7 @@ function connectToDatabase(callback) {
 function authenticateUser(email, pin, callback) {
 	connectToDatabase(function (connection) {
 		const request = new Request(
-			`SELECT * FROM Account WHERE email='${email}' AND pin=${pin};`,
+			`SELECT * FROM Account WHERE email='${email}' AND password=${pin};`,
 			function (err, rowCount) {
 				if (err) {
 					console.error("Error: ", err);
@@ -67,7 +67,7 @@ function authenticateUser(email, pin, callback) {
 function createUser(name, email, pin, callback) {
 	connectToDatabase(function (connection) {
 		const request = new Request(
-			`INSERT INTO Account (name, email, pin) VALUES ('${name}', '${email}', ${pin});`,
+			`INSERT INTO Account (name, email,password) VALUES ('${name}', '${email}', '${pin}');`,
 			function (err) {
 				if (err) {
 					console.error("Error: ", err);
@@ -179,7 +179,7 @@ http
 						res.end();
 					} else {
 						res.writeHead(401, { "Content-Type": "text/plain" });
-						res.end("Invalid email or pin");
+						res.end("Invalid email or password");
 					}
 				}
 			});
@@ -216,7 +216,7 @@ http
 				const formData = new URLSearchParams(body);
 				const name = formData.get("name");
 				const email = formData.get("email");
-				const pin = parseInt(formData.get("pin"));
+				const pin = formData.get("pin");
 
 				// Validate data
 				if (!name || !email || !pin) {
@@ -227,7 +227,7 @@ http
 					createUser(name, email, pin, function (err) {
 						if (err) {
 							res.writeHead(500, { "Content-Type": "text/plain" });
-							res.end("Internal Server Error");
+							res.end(err+"Internal Server Error");
 						} else {
 							// Account created successfully message
 							const successMessage = "<h3>Account created successfully!</h3>";
