@@ -44,7 +44,7 @@ function connectToDatabase(callback) {
 function authenticateUser(email, pin, callback) {
 	connectToDatabase(function (connection) {
 		const request = new Request(
-			`SELECT * FROM Account WHERE email='${email}' AND password=${pin};`,
+			`SELECT * FROM Account WHERE email='${email}' AND password='${pin}';`,
 			function (err, rowCount) {
 				if (err) {
 					console.error("Error: ", err);
@@ -160,7 +160,7 @@ http
 		if (filename === "./login") {
 			// Handle login request
 			const email = q.query.email;
-			const pin = parseInt(q.query.pin);
+			const pin = q.query.pin;
 			if (filename === "./signup") {
 				// Redirect to signup page
 				res.writeHead(302, { Location: "/signup.html" });
