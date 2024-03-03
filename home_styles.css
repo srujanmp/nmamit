@@ -35,6 +35,7 @@ h5 {
 }
 
 button {
+    width:100px;
     padding: 10px 20px;
     background-color: #007bff;
     border: none;
@@ -54,7 +55,7 @@ button:hover {
     margin-top: 20px; /* Adjust margin as needed */
 }
 .logo {
-    width: 100px; /* Adjust width as needed */
+    width: 70px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 20px; /* Add margin to separate logo from other elements */
 }
