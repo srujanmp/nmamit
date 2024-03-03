@@ -22,6 +22,9 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+input:invalid {
+  border: 2px dashed red;
+}
 
 input[type="file"],
 input[type="text"],
