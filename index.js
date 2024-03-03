@@ -7,19 +7,20 @@ const multer = require("multer");
 
 // Database configuration
 const config = {
-    server: 'projectlibraryserver.database.windows.net',
+    server: process.env.DB_SERVER,
     authentication: {
         type: "default",
         options: {
-            userName: 'internship82',
-            password: '$Sylylgo2ru',
+            userName: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
         },
     },
     options: {
         encrypt: true,
-        database: 'library',
+        database: process.env.DB_NAME,
     },
 };
+
 
 
 
