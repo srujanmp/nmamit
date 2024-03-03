@@ -1,63 +1,65 @@
-.logo {
-    width: 80px;
-    height: 80px;
-}
-
-li {
-    display: inline;
-}
-
-ul {
+body {
     display: flex;
-    justify-content: space-between;
-    padding-right: 20px; /* Adjusted padding for better mobile view */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.ad {
-    border: 1px solid black;
+.container {
+    width: 300px;
+    margin: 10%; /* Add some space between the containers */
 }
 
-.adimg {
-    height: 200px;
-    width: 350px;
+form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-.ads,
-.ads1 {
-    display: flex;
-    justify-content: space-evenly;
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.ads1 {
-    padding-top: 20px;
+form label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-.buttonupload {
-    margin: auto;
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
-/* Media queries for responsiveness */
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Media Query for Mobile Devices */
 @media only screen and (max-width: 600px) {
-    .logo {
-        width: 70px; /* Adjusted logo size for mobile view */
-        height: 70px; /* Adjusted logo size for mobile view */
+    .container {
+        width: 90%;
     }
-
-    ul {
-    
-        align-items: center;
-        padding: 0; /* Removed right padding for better mobile view */
-    }
-
-    .homebuttons {
-        margin-top: 10px; /* Added margin between buttons for mobile view */
-    }
-
-    .adimg {
-        width: 100%; /* Make ads responsive to the width of the screen */
-    }
-
-    .buttonupload {
-        text-align: center; /* Center align the upload button on mobile view */
+    body {
+        flex-direction: column;
+      
     }
 }
