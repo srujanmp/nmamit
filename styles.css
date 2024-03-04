@@ -48,9 +48,7 @@ form input[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-input:invalid {
-  border: 2px dashed red;
-}
+
 
 form input[type="submit"]:hover {
     background-color: #0056b3;
