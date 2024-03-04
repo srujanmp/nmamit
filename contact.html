@@ -1,54 +1,37 @@
-<div class="container" style="background-color: #3498db; color: white; border-radius: 10px; padding: 20px;">
-  <div style="text-align: center;">
-    <h2 style="font-family: Arial, sans-serif; color: #3498db; margin-bottom: 10px;">Contact Us</h2>
-    <p style="font-family: Arial, sans-serif; color: white; margin-bottom: 15px;">Please drop us a note</p>
-  </div>
-  <center>
-    <div class="row">
-      <div class="column" style="display: flex; flex-direction: column; align-items: center;"> </div>
-      <div class="column" style="display: flex; flex-direction: column; align-items: center;">
-        <form action="mailto:srujanmpadmashali@gmail.com" style="margin-top: 20px;">
-          <label for="name" style="font-family: Arial, sans-serif; color: white; margin-bottom: 5px;">Your Name</label>
-          <br>
-          <input type="text" id="name" name="Your Name (required)" placeholder="Your name.." style="background-color: #f0f0f0; color: #000; border-radius: 5px; padding: 5px; margin-bottom: 10px; width: 100%;">
-          <br>
-          <label for="email" style="font-family: Arial, sans-serif; color: white; margin-bottom: 5px;">Your email address</label>
-          <br>
-          <input type="text" id="email" name="Your email (required)" placeholder="Your email.." style="background-color: #f0f0f0; color: #000; border-radius: 5px; padding: 5px; margin-bottom: 10px; width: 100%;">
-          <br>
-          <label for="message" style="font-family: Arial, sans-serif; color: white; margin-bottom: 5px;">Message</label>
-          <br>
-          <textarea id="message" name="message" placeholder="Write something.." style="height: 170px; background-color: #f0f0f0; color: #000; border-radius: 5px; padding: 5px; margin-bottom: 10px; width: 100%;"></textarea>
-          <br>
-          <input type="submit" value="Submit" style="background-color: #3498db; color: white; border-radius: 5px; padding: 5px; width: 100%;">
-        </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact-Us</title>
+</head>
+<body><center>
+    <div class="container">
+        <div style="text-align:center">
+          <h2>Contact Us</h2>
+          <p>Please drop us a note</p>
+        </div>
+        <div class="row">
+          <div class="column">
+          </div>
+          <div class="column">
+            <form action="mailto:srujanmpadmashali@gmail.com">
+              <label for="name">Your Name</label>
+              <br>
+              <input type="text" id="name" name="Your Name (required)" placeholder="Your name..">
+              <br>
+              <label for="email">Your email address</label>
+              <br>
+              <input type="text" id="email" name="Your email (required)" placeholder="Your email..">
+              <br>
+              <label for="subject">Subject</label>
+              <br>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+              <br>
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </center>
-</div>
-
-<style>
-  @media only screen and (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-    
-    h2 {
-      font-size: 1.2em;
-    }
-    
-    p {
-      font-size: 0.8em;
-    }
-    
-    .column {
-      width: 100%;
-    }
-    
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      font-size: 0.9em;
-    }
-  }
-</style>
+</body>
+</html>
