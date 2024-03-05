@@ -55,7 +55,7 @@ button:hover {
     margin-top: 20px; /* Adjust margin as needed */
 }
 .logo {
-    width: 70px; /* Adjust width as needed */
+    width: 200px; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 20px; /* Add margin to separate logo from other elements */
 }
@@ -96,6 +96,9 @@ footer {
   }
   
   @media screen and (max-width: 768px) {
+    .logo {
+    width: 150px;
+    }
     .nav-links {
       display: none;
       flex-direction: column;
