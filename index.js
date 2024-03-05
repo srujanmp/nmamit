@@ -307,10 +307,25 @@ http
 					res.end("Internal Server Error");
 				} else {
 					let tableHtml =
-						'<head><style>@media only screen and (max-width: 768px){html {font-size: 25px;}}</style></head><body><table border="1"><tr>';
+						'<head> <style>body {font-size:20px;font-family: Arial, sans-serif;background-color: #f2f2f2;}table {border-collapse: collapse;width: 100%;max-width: 100%;margin:auto;background-color: #fff;border: 1px solid #ccc;}th, td {text-align: center;padding: 8px;}th {background-color: #f0f8ff; /* light blue */}img {max-width: 100%;height: auto;}@media only screen and (max-width: 600px) {th, td {font-size: 27px; /* Decrease font size for smaller screens */}}</style></head><body><table border="1"><tr>';
 					const keys = Object.keys(data[0]); // Get the keys from the first row to ensure consistency
 					keys.forEach(function (key) {
-						tableHtml += '<th style="width: 20%;">' + key + "</th>";
+						if (key === "ItemId") {
+							tableHtml += '<th style="width: 10%;">ItemId</th>";
+	                                        }
+						else if (key === "ItemName") {
+							tableHtml += '<th style="width: 22.5%;">Item Name</th>";
+	                                        }
+						else if (key === "ItemDescription") {
+							tableHtml += '<th style="width: 22.5%;">Description</th>";
+	                                        }
+						else if (key === "ItemContact") {
+							tableHtml += '<th style="width: 22.5%;">Contact</th>";
+	                                        }
+						else if (key === "ImageUrl") {
+							tableHtml += '<th style="width: 22.5%;">Image</th>";
+	                                        }
+						
 					});
 					tableHtml += "</tr>";
 					data.forEach(function (row) {
