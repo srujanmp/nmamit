@@ -7,17 +7,17 @@ const multer = require("multer");
 
 // Database configuration
 const config = {
-    server: process.env.DB_SERVER,
+    server: 'projectlibraryserver.database.windows.net',
     authentication: {
         type: "default",
         options: {
-            userName: process.env.DB_USERNAME,
-            password: process.env.DB_PASSWORD,
+            userName: 'internship82',
+            password: "$Sylylgo2ru",
         },
     },
     options: {
         encrypt: true,
-        database: process.env.DB_NAME,
+        database: 'library',
     },
 };
 
@@ -310,15 +310,15 @@ http
 						'<head> <style>body {font-size:20px;background-color: #f2f2f2;}table {border-collapse: collapse;width: 100%;max-width: 100%;margin:auto;background-color: #fff;border: 1px solid #ccc;}th, td {text-align: center;padding: 8px;}th {background-color: #f0f8ff;}img {max-width: 100%;height: auto;}@media only screen and (max-width: 600px) {th, td {font-size: 27px;}}</style></head><body><table border="1"><tr>';
 					const keys = Object.keys(data[0]); // Get the keys from the first row to ensure consistency
 					
-							tableHtml += '<th style="width: 10%;">ItemId</th>";
+							tableHtml += '<th style="width: 10%;">ItemId</th>';
 	                                        
-							tableHtml += '<th style="width: 22.5%;">Item Name</th>";
+							tableHtml += '<th style="width: 22.5%;">Item Name</th>';
 	                                   
-							tableHtml += '<th style="width: 22.5%;">Description</th>";
+							tableHtml += '<th style="width: 22.5%;">Description</th>';
 	                                      
-							tableHtml += '<th style="width: 22.5%;">Contact</th>";
+							tableHtml += '<th style="width: 22.5%;">Contact</th>';
 	                                        
-							tableHtml += '<th style="width: 22.5%;">Image</th>";
+							tableHtml += '<th style="width: 22.5%;">Image</th>';
 	                                        
 					tableHtml += "</tr>";
 					data.forEach(function (row) {
