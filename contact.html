@@ -3,12 +3,61 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237617952637805"
      crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="home_styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact-Us</title>
+    <style>.contain{font-size: 30px;display: flex;
+      justify-content: space-between;
+      align-items: center;margin:200px; margin-top: 50px;margin-right: 200px;   
+      @media screen and (max-width: 768px) {
+        display:block;margin:10px;
+      }}button{
+    width:100px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+input,textarea{
+  width:50vw;
+}</style>
+
 </head>
-<body><center>
+<body>
+  <nav class="navbar">
     <div class="container">
+      <img class="logo" src="logo.png" alt="logo">
+      <ul class="nav-links">
+        <li><a href="homepage.html?email=User">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </div>
+  </nav>
+
+  <script>const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    </script>
+    <center>
+    <div class="contain">
         <div style="text-align:center">
           <h2>Contact Us</h2>
           <p>Please drop us a note</p>
@@ -18,22 +67,25 @@
           </div>
           <div class="column">
             <form action="mailto:srujanmpadmashali@gmail.com">
-              <label for="name">Your Name</label>
+              <label for="name">Name</label>
               <br>
               <input type="text" id="name" name="Your Name (required)" placeholder="Your name..">
               <br>
-              <label for="email">Your email address</label>
+              <label for="email">Email address</label>
               <br>
               <input type="text" id="email" name="Your email (required)" placeholder="Your email..">
               <br>
-              <label for="subject">Subject</label>
+              <label for="subject">Message</label>
               <br>
               <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
               <br>
-              <input type="submit" value="Submit">
+              <button type="submit" value="Submit">Submit</button>
             </form>
           </div>
         </div>
       </div>
+      
+      <footer style="margin-left:4.5vw;position: absolute;padding: 10px;width: 90vw;height: fit-content;bottom: 0px;"><button><a href="https://docs.google.com/forms/d/e/1FAIpQLSchBtLo4qFeNV62gS9bMRQxlrzERm2B6ggdQorPqphkB1_PJg/viewform?vc=0&c=0&w=1&flr=0" style="text-decoration: none;">Click for Feedback</a></button></footer>
+
 </body>
 </html>
