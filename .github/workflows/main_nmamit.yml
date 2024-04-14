@@ -1,8 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - nmamit
-
 
 on:
   push:
@@ -17,25 +13,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm install tedious
-          npm install multer
-          npm install dotenv
-          npm run build --if-present
-        
+      - name: npm install
+        run: npm install
+
+      - name: Build
+        run: npm run build --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip -r release.zip ./*
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: release.zip
@@ -49,18 +50,14 @@ jobs:
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: node-app
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+      - name: Deploy to Azure Web App using Azure CLI
+        uses: azure/CLI@v1
         with:
-          app-name: 'nmamit'
-          slot-name: 'Production'
-          package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6CE3F36569BA42B58FEC38AA816D31D7 }}
+          azcliversion: '2.28.0'
+          inlineScript: |
+            az webapp deployment source config-zip --resource-group MyResourceGroup --name nmamit --src ./release.zip
+
