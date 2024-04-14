@@ -118,7 +118,7 @@ function createItem(url, name, desc, contact, callback) {
 // Function to fetch all items from the Item table
 function fetchItems(callback) {
 	connectToDatabase(function (connection) {
-		const request = new Request("SELECT * FROM Item ORDER BY ItemID DESC", function (
+		const request = new Request("SELECT * FROM Item", function (
 			err,
 			rowCount,
 			rows,
